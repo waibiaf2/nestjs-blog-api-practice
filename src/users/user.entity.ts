@@ -7,8 +7,29 @@ export class User {
 
   @Column({
     type: 'varchar',
-    length: 512,
+    length: 256,
     nullable: false,
   })
   firstName: string;
+
+  @Column({
+    type: 'varchar',
+    length: 256,
+    nullable: true,
+  })
+  lastName: string;
+
+  @Column({
+    type: 'varchar',
+    length: 256,
+    nullable: false,
+  })
+  email: string;
+
+  @Column({
+    type: 'varchar',
+    length: 256,
+    nullable: false,
+  })
+  password: string;
 }
