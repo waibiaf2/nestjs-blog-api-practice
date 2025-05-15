@@ -16,7 +16,7 @@ const ENV = process.env.NODE_ENV || 'production';
     PostsModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: !ENV ? '.env.development' : `.env.${ENV}`,
+      envFilePath: !ENV ? '.env' : `.env.${ENV}`,
       load: [appConfig, databaseConfig],
     }),
     TypeOrmModule.forRootAsync({
