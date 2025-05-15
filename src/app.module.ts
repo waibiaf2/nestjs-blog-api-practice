@@ -7,8 +7,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PostsModule } from './posts/posts.module';
 import databaseConfig from './config/database.config';
 import appConfig from './config/app.config';
-import { Post } from './posts/posts.entity';
-import { User } from './users/user.entity';
 
 const ENV = process.env.NODE_ENV || 'production';
 
