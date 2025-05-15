@@ -6,7 +6,7 @@ export default registerAs('database', () => ({
   port: process.env.DATABASE_PORT || 5432,
   username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
+  databaseName: process.env.DATABASE_NAME,
   synchronize: process.env.DATABASE_SYNCRONIZE == 'true' ? true : false,
   autoLoadEntities:
     process.env.DATABASE_AUTOLOAD_ENTITIES == 'true' ? true : false,
