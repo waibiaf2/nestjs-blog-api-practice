@@ -19,7 +19,7 @@ async function bootstrap() {
       },
     }),
   );
-  
+
   /**
    * Swagger Configurations
    * */
@@ -28,6 +28,9 @@ async function bootstrap() {
     .setDescription('This is the api documentation for the blog api')
     .setVersion('1.0')
     .addTag('Practice Blog Api')
+    .setLicense('MIT Licence', 'https://opensource.org/licenses/MIT')
+    .addServer('http://localhost:3000')
+    .addServer('http://localhost:3000/api')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory());
