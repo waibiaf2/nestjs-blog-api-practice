@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsNotEmpty,
   IsOptional,
   IsString,
   Matches,
@@ -14,6 +15,9 @@ export class CreateUserDto {
     example: 'John',
   })
   @IsString()
+  @IsNotEmpty({
+    message: 'First name is a require field',
+  })
   @MinLength(3)
   @MaxLength(96)
   firstName: string;
@@ -33,6 +37,9 @@ export class CreateUserDto {
     example: 'johndoe@gmail.com',
   })
   @IsEmail()
+  @IsNotEmpty({
+    message: 'Email must not be empty.',
+  })
   email: string;
 
   @ApiProperty({
@@ -41,6 +48,7 @@ export class CreateUserDto {
     example: 'Password#_456',
   })
   @IsString()
+  @IsNotEmpty({ message: 'Password is require' })
   @Matches(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, {
     message:
       'Password must contain at least one uppercase letter, one number and one special character',

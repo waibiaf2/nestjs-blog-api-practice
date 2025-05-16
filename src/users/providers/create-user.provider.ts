@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { User } from '../user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,7 +12,17 @@ export class CreateUserProvider {
   ) {}
 
   public async createUser(createUserDto: CreateUserDto): Promise<User> {
-    const user = this.userRepository.create(createUserDto);
-    return this.userRepository.save(user);
+    let user = this.userRepository.create(createUserDto);
+    try {
+      user = await this.userRepository.save(user);
+    } catch (e) {
+      throw new BadRequestException(e, {
+        description: 'User could not be saved.',
+      });
+    }
+
+    const { password, ...userData } = user;
+
+    return userData as User;
   }
 }
