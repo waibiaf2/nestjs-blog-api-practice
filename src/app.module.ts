@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PostsModule } from './posts/posts.module';
+import { AuthModule } from './auth/auth.module';
 import databaseConfig from './config/database.config';
 import appConfig from './config/app.config';
 
@@ -25,7 +26,6 @@ const ENV = process.env.NODE_ENV || 'production';
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         autoLoadEntities: configService.get('database.autoLoadEntities'),
-        logging: true,
         synchronize: configService.get('database.synchronize'),
         host: configService.get('database.host'),
         database: configService.get('database.databaseName'),
@@ -34,6 +34,7 @@ const ENV = process.env.NODE_ENV || 'production';
         password: configService.get('database.password'),
       }),
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
