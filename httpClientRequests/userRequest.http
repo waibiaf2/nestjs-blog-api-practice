@@ -5,8 +5,8 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "firstName": "Andrew",
-  "lastName": "Waibi",
-  "email": "waibiaf2@gmail.com",
+  "firstName": "Waibi",
+  "lastName": "Andrew",
+  "email": "waibi@gmail.com",
   "password": "gLORIAAVIOS#_2"
 }
