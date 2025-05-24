@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PostsModule } from './posts/posts.module';
 import { AuthModule } from './auth/auth.module';
@@ -12,6 +12,10 @@ import jwtConfig from './auth/config/jwt.config';
 import { JwtModule } from '@nestjs/jwt';
 import environmentsValidation from './config/environments.validation';
 
+/**
+ * The current environment (defaults to 'production' if not set).
+ * @type {string}
+ */
 const ENV = process.env.NODE_ENV || 'production';
 
 /**
@@ -31,7 +35,7 @@ const ENV = process.env.NODE_ENV || 'production';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
+      useFactory: (configService: ConfigService): TypeOrmModuleOptions => ({
         type: 'postgres',
         autoLoadEntities: configService.get('database.autoLoadEntities'),
         synchronize: configService.get('database.synchronize'),
