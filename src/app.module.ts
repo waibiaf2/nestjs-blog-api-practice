@@ -14,6 +14,10 @@ import environmentsValidation from './config/environments.validation';
 
 const ENV = process.env.NODE_ENV || 'production';
 
+/**
+ * The root module of the application.
+ * Configures global modules, database connection, and feature modules.
+ */
 @Module({
   imports: [
     UsersModule,
